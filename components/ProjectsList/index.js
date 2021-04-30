@@ -2,67 +2,37 @@
 import { useState } from 'react'
 import { items, projects } from './data'
 
+import List from './List'
+
+import theme from '../../styles/theme'
+const { site, color, dim, dim: { air, lin, rad }, media, font, dur } = theme;
+
+
 const defaultSort = 'chronology';
 
-
-const ProjectsList = ({  }) => {
+const ProjectsList = () => {
 
   const [view, setView] = useState({ employers: true, sort: defaultSort, });
   
-  return (<>
-    <button onClick={() => setView({ ...view, employers: !view.employers })}>{ view.employers ? 'Hide' : 'Show'} employers</button>
-    <button onClick={() => setView({ ...view, sort: view.sort === defaultSort ? 'title' : defaultSort })}>Sorted by { view.sort }</button>
+  return (
+  <div className='projects-list'>
+    <div className='controls'>
+      <button className='button' onClick={() => setView({ ...view, employers: !view.employers })}>{ view.employers ? 'Hide' : 'Show'} employers</button>
+      {/* <button onClick={() => setView({ ...view, sort: view.sort === defaultSort ? 'title' : defaultSort })}>Sorted by { view.sort }</button> */}
+    </div>
     
     <List items={ view.employers ? items : projects } {...{ view }}/>
 
-    <style jsx>{``}</style>
-  </>)
+    <style jsx>{`
+      .projects-list {
+        max-width: 600px;
+      }
+      .controls .button {
+        margin-bottom: ${air/2}px;
+      }
+    `}</style>
+  </div>)
 }
 
-
-
-
-const List = ({ items = [], level = 0, view }) => {
-
-  if (!items.length) return null
-  return (
-  
-    <ul className={`list level--${ level }`}>
-      
-      { items.map((item, key) => (
-        <li {...{ key }} className={`item level--${ level }`}>
-
-          { item.type === 'project' && <Project {...{ ...item }}/> }
-          { item.type === 'employer' && <Employer {...{ ...item }}><List items={ item.projects } level={ level + 1} {...{ view }}/></Employer> }
-        </li>
-      ))}
-
-      <style jsx>{``}</style>
-    </ul>
-  )
-}
-
-
-
-
-const Project = ({ title = 'title', deets }) => {
-  return (<>
-    <h2>Project: { title }</h2>
-    <Details {...{ deets }}/>
-  </>)
-}
-
-const Employer = ({ title = 'title', deets, children }) => {
-  return (<>
-    <h2>Employer: { title }</h2>
-    <Details {...{ deets }}/>
-    { children }
-  </>)
-}
-
-const Details = ({ deets = false }) => {
-  if (!deets) return null;
-  return typeof deets === 'string' ? <p>{ deets }</p> : deets;
-}
 
 export default ProjectsList

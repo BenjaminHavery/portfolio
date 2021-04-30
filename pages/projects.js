@@ -1,23 +1,18 @@
 
-import Head from 'next/head'
+import Layout from '../components/Layout'
 import ProjectsList from '../components/ProjectsList'
 
 
 export default function Home() {
   return (
-    <div>
-      <Head>
-        <title>Ben Havery's projects</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout title="my projects">
 
-      <h1>My projects</h1>
-      <main>
+      <main className='main'>
         <p>here's some projects:</p>
         <ProjectsList />
       </main>
 
-    </div>
+    </Layout>
   )
 }
 
