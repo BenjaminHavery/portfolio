@@ -4,12 +4,12 @@ const { site, color, dim, dim: { air, lin, rad }, media, font, dur } = theme,
       tColor = color.dep;
 
 const Tags = ({ title = '', tags = [], className = '' }) => {
-  console.log(tags);
+  // console.log(tags);
   if (!tags.length) return null;
   return (<>
     { !!title.length && <h3 className={`heading ${className}`}>{ title }</h3> }
     <ul className={`tags ${className}`}>
-      { tags.map(( tag ) => !!tag && <li className='tag'>{ tag }</li> )}
+      { tags.map(( tag, key ) => !!tag && <li className='tag' {...{ key }}>{ tag }</li> )}
 
       <style jsx>{`
         .tags {

@@ -84,7 +84,7 @@ const Layout = ({ title, children, tint = color.active }) => {
         }
 
 
-        @media ${media.up.lg} {  
+        @media ${media.up.md} {  
           .header {
             padding: ${dim.air/2}px ${dim.air}px;
           }

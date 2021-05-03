@@ -25,7 +25,7 @@ const ProjectsList = () => {
 
     <style jsx>{`
       .projects-list {
-        max-width: 600px;
+        max-width: 800px;
       }
       .controls .button {
         margin-bottom: ${air/2}px;
