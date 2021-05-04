@@ -7,9 +7,7 @@ export default function Home() {
   return (
     <Layout title='Projects'>
 
-      <main className='main'>
-        <ProjectsList />
-      </main>
+      <ProjectsList />
 
     </Layout>
   )

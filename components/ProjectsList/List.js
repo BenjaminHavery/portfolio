@@ -14,7 +14,7 @@ const List = ({ items = [], level = 0, view, setView }) => {
 
   return !items.length ? null : (
 
-    <ul className={`list level--${ level }`}>
+    <ul className={`list level--${ level } hide-scrollbar`}>
       
       { items.map((item, key) => <Item open={isOpen(item)} toggleOpen={() => toggleOpen(item)} {...{ key, item, level, view, setView }}/> )}
 

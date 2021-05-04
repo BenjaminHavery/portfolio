@@ -35,6 +35,12 @@ button {
 
 .tight { margin: 0 } .tight-t { margin-top: 0 } .tight-l { margin-left: 0 } .tight-r { margin-right: 0 } .tight-b { margin-bottom: 0 }
 
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar { display: none } /* Chrome, Safari and Opera */
+
 `}</style>
 
 

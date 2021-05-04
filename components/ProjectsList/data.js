@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid'
 
 import rawItems from './dataRaw'
 
+
 const pullUnique = (to = [], from = []) => {
   from.forEach(e => { if ( to.indexOf(e) === -1 ) to.push(e) })
 }
@@ -58,4 +59,4 @@ const employers = [],
 
 // console.log(items, tools, langs, brief);
 
-export { items, projects, employers }
+export { items, projects, employers, brief, langs, tools }
