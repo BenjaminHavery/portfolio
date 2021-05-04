@@ -3,12 +3,3 @@ export default function Home() {
     <div></div>
   )
 }
-
-export async function getStaticProps() {
-  return {
-    redirect: {
-      destination: '/projects',
-      permanent: false,
-    },
-  }
-}
