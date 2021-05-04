@@ -1,4 +1,4 @@
 [[redirects]]
-  from = "/index-old"
+  from = "/"
   to = "/projects"
   force = true
