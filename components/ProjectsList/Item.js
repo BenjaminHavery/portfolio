@@ -2,6 +2,7 @@
 import { useState } from 'react'
 
 import List from './List'
+import Tags from './Tags'
 import Project from './Project'
 import Employer from './Employer'
 
@@ -11,23 +12,34 @@ const { site, color, dim, dim: { air, lin, rad }, media, font, dur } = theme,
       eColor = color.req;
 
 
-const Item = ({ item, level, view }) => {
+const Item = ({ item, level, view, setView }) => {
 
-  const [open, setOpen] = useState(true);
+  const open = view.open.includes(item.id),
+        toggleOpen = () => {
+          console.log('toggle open', item);
+          if (open) setView({...view, open: view.open.filter(id => id !== item.id)});
+          else setView({...view, open: [...view.open, item.id]});
+        };
 
   return (
     <li className={`item level--${ level } type--${ item.type }`}>
 
-      <div className='header'>
+      <div className='header' onClick={() => toggleOpen()}>
         <h2 className='heading'>{ item.title }</h2>
         {/* <button className='button' onClick={() => setOpen(!open)}>Details</button> */}
       </div>
       <div className='content'>
-        { item.type === 'project' && <Project {...{ ...item, open, setOpen }}/> }
-        { item.type === 'employer' && <Employer {...{ ...item, open, setOpen }}/> }
+        <Tags tags={ item.brief }/>
+        { open 
+          ? <>
+              { item.type === 'project' && <Project {...{ ...item }}/> }
+              { item.type === 'employer' && <Employer {...{ ...item }}/> }
+            </>
+          : <button className='button' onClick={() => toggleOpen()}>...</button>
+        }
       </div>
 
-      <List items={ item.projects } level={ level + 1} {...{ view }}/>
+      <List items={ item.projects } level={ level + 1} {...{ view, setView }}/>
 
       <style jsx>{`
 
@@ -58,15 +70,24 @@ const Item = ({ item, level, view }) => {
           color: ${color.white};
           background-color: ${pColor};
           border-top-left-radius: ${rad - lin}px;
+          cursor: pointer;
         }
         .type--employer > .header { background-color: ${eColor} }
 
         .heading { margin: 0 }
+        //.button {
+        //  margin: -${air/4}px 0;
+        //  padding: ${air/6}px ${air/3}px;
+        //  border-color: ${color.white};
+        //  border-radius: ${rad/2}px;
+        //}
+
         .button {
-          margin: -${air/4}px 0;
-          padding: ${air/6}px ${air/3}px;
-          border-color: ${color.white};
-          border-radius: ${rad/2}px;
+          display: block;
+          width: 100%;
+          margin: -${air/3}px 0 -${air/6}px;
+          padding: 0;
+          border: none;
         }
 
         .content {

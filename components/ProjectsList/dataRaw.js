@@ -65,9 +65,9 @@ const items = [ // written in shorthand, gets verbose during parse step
         links: ['sapemployeebenefits.co.uk']
       },
       {
-        title: 'Concert, a Buck company',
+        title: 'Concert internal',
         brief: [b.ws, b.bu, b.ma],
-        deets: "This website replaced the previous one when Concert Consulting was acquired in late 2020. For reasons of secrecy and a surprisingly sudden deal it had to be a fast build by a single developer; I received my first brief sans designs or content a week before the merger!",
+        deets: "The latest Concert website replaced the prior one when Concert Consulting was acquired in late 2020. For reasons of secrecy and a surprisingly sudden deal it had to be a fast build by a single developer; I received my first brief sans designs or content a week before the merger!",
         langs: [l.tw, l.ht, l.js, l.cs, l.sc, l.ph, l.sq],
         tools: [t.cr, t.we, t.jq, t.gi],
         links: ['concertconsult.co.uk'],
@@ -104,7 +104,7 @@ const items = [ // written in shorthand, gets verbose during parse step
                 <p>Finally, shortly before leaving Concert I built a proof-of-concept web-app using Vue and Firebase which incorporated video streams, messaging and user avatars moving around in a virtual space. The idea was to produce a digital alternative to their main annual promotional event, although last I heard it has not progressed beyond where I left it.</p>
               </>,
         langs: [l.tw, l.ht, l.js, l.cs, l.sc, l.ph, l.sq],
-        tools: [t.cr, t.we, t.jq, t.gi],
+        tools: [t.cr, t.vu, t.we, t.jq, t.gi],
         links: ['southwarkpensions.co.uk', { text: 'newsletter website', url: 'https://newsletter.southwarkpensions.co.uk/' }],
       },
       {
@@ -258,15 +258,15 @@ const items = [ // written in shorthand, gets verbose during parse step
   },
 
   {
-    title: 'Impact Mentoring scheduling app',
+    title: 'Impact Mentoring',
     brief: [b.wa, b.bu],
     deets: <>
-            <p>Impact mentoring are an award winning Bristol company providing mentorship to young people in the South West. They use a Trello based system to manage mentor-mentee appointments and distribute them to staff and clients digitally; this was a workable solution when the number of appointments was small but became unmanageable as the business grew. The most pressing issues were:</p>
+            <p>Impact mentoring are an award winning Bristol company providing mentorship to young people in the South West, for whom I wrote an appointment management tool in the form of a web application. They use a Trello based system to manage mentor-mentee appointments and distribute them to staff and clients digitally; this was a workable solution when the number of appointments was small but became unmanageable as the business grew. The most pressing issues were:</p>
             <ul>
               <li>Their system had no way to detect appointment conflicts, leaving mentors at risk of being double booked.</li>
               <li>The Trello UI had no way to separte date, location and participant information into separate fields, meaning that appointments had to be accurately entered as a single string and then (hopefully) parsed by a sorting tool another developer had built.</li>
             </ul>
-            <p>To mitigate this I built a frontend interface using D3 which could read and write to their existing dataset. The new interface warns of conflicting appointments, has specific fields with validation and displays items in a calender view where they can be dragged, dropped and resized. It also has options for cloning appointments or marking them as recurring, which reportedly saved the team a ton of time compared to manually copying recurring appointments into new Trello cards and then manually adding dates.</p>
+            <p>To mitigate this I built a frontend interface using D3 which could read and write to their existing dataset. The new interface warns of conflicting appointments, has specific fields with validation and displays items in a calender view where they can be dragged, dropped and resized. It also has options for cloning appointments or marking them as recurring, which reportedly saves the team a ton of time compared to manually copying recurring appointments into new Trello cards and then manually adding dates.</p>
           </>,
     langs: [l.ht, l.cs, l.js],
     tools: [t.ddd],

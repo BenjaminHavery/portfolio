@@ -64,6 +64,9 @@ const theme = {
     active: '#0c5bde',
     dep: '#d60071',
     req: '#7c2cdc',
+
+    pro: '#d60071',
+    emp: '#7c2cdc',
   },
 
   dur: {
