@@ -26,11 +26,11 @@ class MyDocument extends Document {
             href="https://fonts.gstatic.com"
             crossOrigin="true"
           />
-          <link
+          {/* <link
             rel="preload"
             as="style"
             href={font.importUrl}
-          />
+          /> */}
           {/* <link
             rel="stylesheet"
             href={fonts.importUrl}
