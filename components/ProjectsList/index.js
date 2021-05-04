@@ -52,6 +52,7 @@ const ProjectsList = () => {
           justify-content: flex-end;
         }
         .controls {
+          flex: 0 0 auto;
           position: sticky;
           top: 0px;
           padding-left: ${air}px;

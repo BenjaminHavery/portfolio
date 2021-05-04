@@ -37,7 +37,7 @@ b = { // brief detail shortcodes
 // Data
 const items = [ // written in shorthand, gets verbose during parse step
   {
-    title: 'Todeps app',
+    title: 'Todeps',
     brief: [b.wa, b.de, b.bu],
     deets: <>
             <p>Todeps is an in-progress Trello/Jira-esqe productivity application built primarily for demonstration purposes. Its USP is the facility to conveniently tag tasks as depending on other tasks, from which a non-blocking order of operations is inferred.</p>
@@ -71,6 +71,17 @@ const items = [ // written in shorthand, gets verbose during parse step
         langs: [l.tw, l.ht, l.js, l.cs, l.sc, l.ph, l.sq],
         tools: [t.cr, t.we, t.jq, t.gi],
         links: ['concertconsult.co.uk'],
+      },
+      {
+        title: 'GE',
+        brief: [b.ws, b.wa, b.ua, b.bu, b.ma],
+        deets: <>
+                <p>The GE website is unique among the rest of Concert's pension information websites in that there is an authentication requirement to view most of the content via WTW's SSO system. It has a video and document library, news section and glossary which defines terms where they appear in body text, the majority of which you won't be able to see unless you happen to have a GE pension.</p>
+                <p>Inaccessible to all but members is also a newsletter website, an AVCs website and a Vue app for surveying users, all built by yours truly.</p>
+              </>,
+        langs: [l.tw, l.ht, l.js, l.cs, l.sc, l.ph, l.sq],
+        tools: [t.cr, t.we, t.jq, t.gi],
+        links: ['mygepension.com'],
       },
       {
         title: 'Nationwide',
@@ -148,17 +159,6 @@ const items = [ // written in shorthand, gets verbose during parse step
         langs: [l.tw, l.ht, l.js, l.cs, l.sc, l.ph, l.sq],
         tools: [t.cr, t.vu, t.we, t.jq, t.gi],
         links: ['hprbp.com', { text: 'Trustee Report to Members', url: 'https://newsletter.hprbp.com/' }],
-      },
-      {
-        title: 'GE',
-        brief: [b.ws, b.wa, b.ua, b.bu, b.ma],
-        deets: <>
-                <p>The GE website is unique among the rest of Concert's pension information websites in that there is an authentication requirement to view most of the content via WTW's SSO system. It has a video and document library, news section and glossary which defines terms where they appear in body text, the majority of which you won't be able to see unless you happen to have a GE pension.</p>
-                <p>Inaccessible to all but members is also a newsletter website, an AVCs website and a Vue app for surveying users, all built by yours truly.</p>
-              </>,
-        langs: [l.tw, l.ht, l.js, l.cs, l.sc, l.ph, l.sq],
-        tools: [t.cr, t.we, t.jq, t.gi],
-        links: ['mygepension.com'],
       },
       {
         title: 'Prudential',

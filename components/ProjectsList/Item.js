@@ -16,7 +16,6 @@ const Item = ({ item, level, view, setView }) => {
 
   const open = view.open.includes(item.id),
         toggleOpen = () => {
-          console.log('toggle open', item);
           if (open) setView({...view, open: view.open.filter(id => id !== item.id)});
           else setView({...view, open: [...view.open, item.id]});
         };
@@ -29,14 +28,11 @@ const Item = ({ item, level, view, setView }) => {
         {/* <button className='button' onClick={() => setOpen(!open)}>Details</button> */}
       </div>
       <div className='content'>
-        <Tags tags={ item.brief }/>
-        { open 
-          ? <>
-              { item.type === 'project' && <Project {...{ ...item }}/> }
-              { item.type === 'employer' && <Employer {...{ ...item }}/> }
-            </>
-          : <button className='button' onClick={() => toggleOpen()}>...</button>
-        }
+
+        { item.type === 'project' && <Project {...{ ...item, open }}/> }
+        { item.type === 'employer' && <Employer {...{ ...item, open }}/> }
+
+        { !open && <button className='button' onClick={() => toggleOpen()}>...</button> }
       </div>
 
       <List items={ item.projects } level={ level + 1} {...{ view, setView }}/>
