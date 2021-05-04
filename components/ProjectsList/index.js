@@ -17,7 +17,7 @@ const ProjectsList = () => {
   return (
   <div className='projects-list'>
     <div className='controls'>
-      <button className='button' onClick={() => setView({ ...view, employers: !view.employers })}>{ view.employers ? 'Hide' : 'Show'} employers</button>
+      {/* <button className='button' onClick={() => setView({ ...view, employers: !view.employers })}>{ view.employers ? 'Hide' : 'Show'} employers</button> */}
       {/* <button onClick={() => setView({ ...view, sort: view.sort === defaultSort ? 'title' : defaultSort })}>Sorted by { view.sort }</button> */}
     </div>
     

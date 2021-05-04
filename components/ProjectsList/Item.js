@@ -20,7 +20,7 @@ const Item = ({ item, level, view }) => {
 
       <div className='header'>
         <h2 className='heading'>{ item.title }</h2>
-        <button className='button' onClick={() => setOpen(!open)}>Details</button>
+        {/* <button className='button' onClick={() => setOpen(!open)}>Details</button> */}
       </div>
       <div className='content'>
         { item.type === 'project' && <Project {...{ ...item, open, setOpen }}/> }
