@@ -1,4 +1,5 @@
 module.exports = {
+  distDir: 'out',
   async redirects() {
     return [
       {
