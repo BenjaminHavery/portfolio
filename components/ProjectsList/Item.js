@@ -13,12 +13,19 @@ const { site, color, dim, dim: { air, lin, rad }, media, font, dur } = theme,
 
 
 const Item = ({ item, level, view, setView }) => {
-  
+
   const checkFilter = () => {
     var shouldShow = !view.filter;
-    item.tags.forEach(tag => {
-      if (shouldShow) return
-      shouldShow = view.filterBy.includes(tag.id)
+    if (shouldShow) return shouldShow;
+
+    var doneLooking = false;
+    const itemTags = item.tags.map(t => t.id);
+
+    view.filterBy.split(',').forEach(tag => {
+      if (doneLooking) return;
+      shouldShow = itemTags.includes(tag);
+      if (view.filterStrict && !shouldShow) doneLooking = true;
+      if (!view.filterStrict && shouldShow) doneLooking = true;
     })
     return shouldShow
   }
@@ -27,7 +34,7 @@ const Item = ({ item, level, view, setView }) => {
 
   useEffect(() => {
     if (checkFilter() !== filter) setFilter(!filter);
-  }, [view.filter, view.filterBy]);
+  }, [view.filter, view.filterBy, view.filterStrict, view.employers]);
 
 
   const open = view.open.includes(item.id),

@@ -25,6 +25,9 @@ export default Tags
 
 
 const Tag = ({ tag, view, setView = false }) => {
+  
+  if (!tag.used) return null;
+
   const active = !view.filter || view.filterBy.includes(tag.id),
         toggleActive = () => {
           if (!setView) return

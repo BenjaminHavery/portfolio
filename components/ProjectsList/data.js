@@ -7,9 +7,6 @@ import rawItems, { brief, langs, tools } from './dataRaw'
 const pushUnique = (to = [], from = []) => {
   from.forEach(e => { if ( to.indexOf(e) === -1 ) to.push(e) })
 }
-// const copyOrder = (to, from) => {
-//   return to.sort((el1, el2) => from.indexOf(el1) > from.indexOf(el2))
-// }
 
 
 const initItem = (item, employer = false) => {

@@ -50,7 +50,7 @@ const items = [ // written in shorthand, gets verbose during parse step
             <p>I can provide a codebase tour on request for the purpose of assessing my programming style.</p>
           </>,
     langs: [l.js, l.ht, l.cs],
-    tools: [t.nx, t.re, t.gi],
+    tools: [t.nx, t.no, t.re, t.gi],
     links: ['todeps.com'],
   },
 
