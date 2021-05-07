@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import List from './List'
 import Tags from './Tags'
@@ -13,6 +13,22 @@ const { site, color, dim, dim: { air, lin, rad }, media, font, dur } = theme,
 
 
 const Item = ({ item, level, view, setView }) => {
+  
+  const checkFilter = () => {
+    var shouldShow = !view.filter;
+    item.tags.forEach(tag => {
+      if (shouldShow) return
+      shouldShow = view.filterBy.includes(tag.id)
+    })
+    return shouldShow
+  }
+
+  const [filter, setFilter] = useState(checkFilter());
+
+  useEffect(() => {
+    if (checkFilter() !== filter) setFilter(!filter);
+  }, [view.filter, view.filterBy]);
+
 
   const open = view.open.includes(item.id),
         toggleOpen = () => {
@@ -20,6 +36,7 @@ const Item = ({ item, level, view, setView }) => {
           else setView({...view, open: [...view.open, item.id]});
         };
 
+  if (!filter) return null;
   return (
     <li className={`item level--${ level } type--${ item.type }`}>
 
@@ -29,7 +46,7 @@ const Item = ({ item, level, view, setView }) => {
       </div>
       <div className='content'>
 
-        { item.type === 'project' && <Project {...{ ...item, open }}/> }
+        { item.type === 'project' && <Project {...{ ...item, open, view }}/> }
         { item.type === 'employer' && <Employer {...{ ...item, open }}/> }
 
         { !open && <button className='button' onClick={() => toggleOpen()}>...</button> }
@@ -71,12 +88,6 @@ const Item = ({ item, level, view, setView }) => {
         .type--employer > .header { background-color: ${eColor} }
 
         .heading { margin: 0 }
-        //.button {
-        //  margin: -${air/4}px 0;
-        //  padding: ${air/6}px ${air/3}px;
-        //  border-color: ${color.white};
-        //  border-radius: ${rad/2}px;
-        //}
 
         .button {
           display: block;
@@ -100,9 +111,11 @@ const Item = ({ item, level, view, setView }) => {
         
         @media ${media.up.md} {
           
+          .item {
+            margin-top: ${air}px;
+          }
           .item:before {
             left: -${air + lin}px;
-//            height: ${lin*5}px;
             width: ${air}px;
           }
           .header, .content {

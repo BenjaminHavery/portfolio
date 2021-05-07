@@ -11,18 +11,18 @@ const { site, color, dim, dim: { air, lin, rad }, media, font, dur } = theme,
       eColor = color.req;
 
 const Project = ({
-  open = true,
+  view, setView, open = true,
   brief, deets, langs, tools, links
 }) => {
 
   return open
     ? <>
-      <Tags tags={ brief }/>
+      <Tags tags={ brief } {...{ view }}/>
       <h3 className='tight-t'>The project</h3>
       <Details {...{ deets }}/>
 
-      <Tags title='Languages' tags={ langs }/>
-      <Tags title='Tools' tags={ tools } className='tools'/>
+      <Tags title='Languages' tags={ langs } {...{ view }}/>
+      <Tags title='Tools' tags={ tools } {...{ view }} className='tools'/>
       <Links {...{ links }}/>
 
       
@@ -33,7 +33,7 @@ const Project = ({
       `}</style>
 
     </>
-    : <Tags tags={ brief }/>
+    : <Tags tags={ brief } {...{ view }}/>
 }
 
 export default Project

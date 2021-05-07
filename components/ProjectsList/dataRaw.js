@@ -1,40 +1,46 @@
-import Links from "./Links";
+
+// Categories
+export const brief = [
+        { sc: 'ws', t: 'Website' },
+        { sc: 'wa', t: 'Web application' },
+        { sc: 'bu', t: 'Build' },
+        { sc: 'up', t: 'Updates/additions' },
+        { sc: 'ma', t: 'Maintenance' },
+        { sc: 'ua', t: 'Authentication' },
+        { sc: 'ml', t: 'Multi-language' },
+        { sc: 'de', t: 'Design (not my specialty!)' },
+      ],
+      langs = [
+        { sc: 'js', t: 'Javascript' },
+        { sc: 'ht', t: 'HTML' },
+        { sc: 'cs', t: 'CSS' },
+        { sc: 'sc', t: 'SCSS' },
+        { sc: 'ph', t: 'PHP' },
+        { sc: 'tw', t: 'Twig' },
+        { sc: 'sq', t: 'SQL' },
+      ],
+      tools = [
+        { sc: 're', t: 'React' },
+        { sc: 'vu', t: 'Vue' },
+        { sc: 'no', t: 'Node.js' },
+        { sc: 'ddd', t: 'D3.js' },
+        { sc: 'jq', t: 'JQuery' },
+        { sc: 'nx', t: 'Next.js' },
+        { sc: 'cr', t: 'Craft CMS' },
+        { sc: 'wp', t: 'WordPress' },
+        { sc: 'we', t: 'Webpack' },
+        { sc: 'gi', t: 'Git' },
+      ]
+
 
 // Shortcodes
-const l = { // languages shortcodes
-  js: 'Javascript',
-  ht: 'HTML',
-  cs: 'CSS',
-  sc: 'SCSS',
-  ph: 'PHP',
-  tw: 'Twig',
-  sq: 'SQL',
-},
-t = { // tools shortcodes
-  re: 'React',
-  vu: 'Vue',
-  nx: 'Next.js',
-  no: 'Node.js',
-  wp: 'WordPress',
-  we: 'Webpack',
-  cr: 'Craft CMS',
-  gi: 'Git',
-  jq: 'JQuery',
-  ddd: 'D3.js',
-},
-b = { // brief detail shortcodes
-  ws: 'website',
-  wa: 'web application',
-  ua: 'user authentication',
-  de: 'design (not my specialty!)',
-  bu: 'build',
-  up: 'updates/additions',
-  ma: 'maintenance',
-  ml: 'multi-language',
-};
+const shortcodeMap = (items) => Object.fromEntries(items.map(i => [i.sc, i])),
+      b = shortcodeMap(brief),
+      l = shortcodeMap(langs),
+      t = shortcodeMap(tools);
 
 
-// Data
+// Projects and Employers
 const items = [ // written in shorthand, gets verbose during parse step
   {
     title: 'Todeps',
@@ -80,7 +86,7 @@ const items = [ // written in shorthand, gets verbose during parse step
                 <p>Inaccessible to all but members is also a newsletter website, an AVCs website and a Vue app for surveying users, all built by yours truly.</p>
               </>,
         langs: [l.tw, l.ht, l.js, l.cs, l.sc, l.ph, l.sq],
-        tools: [t.cr, t.we, t.jq, t.gi],
+        tools: [t.cr, t.we, t.vu, t.jq, t.gi],
         links: ['mygepension.com'],
       },
       {
@@ -107,7 +113,7 @@ const items = [ // written in shorthand, gets verbose during parse step
       },
       {
         title: 'London Borough of Southwark',
-        brief: [b.ws, b.bu, b.ma],
+        brief: [b.ws, b.wa, b.bu, b.ma],
         deets: <>
                 <p>The client brief for the Southwark pensions website was essentially "like the one you did for Hackney, but even better so that we can be top of the pile at the next boroughs meeting". Their website contains all the standard pensions information, documents, videos and news, plus a graphical feature-menu I built in the shape of the river Thames.</p>
                 <p>The <a href='https://southwarkpensions.co.uk/fund-information'>Thames graphic</a> was a challenging piece because the included items were subject to regular change, so absolute positioning was out of the question. Instead I wrote a complex twig template that output items dynamically along a river route that was also defined in the CMS, in mobile and expanded views, cached on the server against the contents of the menu to ensure that the comparatively slow render would only run once when the menu items changed. This graphic was the product of a single day of frantic protyping and development because my budget for the entire build was about a week, so I was somewhat surprised how well it turned out!</p>

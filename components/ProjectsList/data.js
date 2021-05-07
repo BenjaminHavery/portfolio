@@ -1,12 +1,15 @@
 
 import { nanoid } from 'nanoid'
 
-import rawItems from './dataRaw'
+import rawItems, { brief, langs, tools } from './dataRaw'
 
 
-const pullUnique = (to = [], from = []) => {
+const pushUnique = (to = [], from = []) => {
   from.forEach(e => { if ( to.indexOf(e) === -1 ) to.push(e) })
 }
+// const copyOrder = (to, from) => {
+//   return to.sort((el1, el2) => from.indexOf(el1) > from.indexOf(el2))
+// }
 
 
 const initItem = (item, employer = false) => {
@@ -36,27 +39,44 @@ const initItem = (item, employer = false) => {
   }
   
   if (employer) {
-    pullUnique(employer.brief, item.brief);
-    pullUnique(employer.tools, item.tools);
-    pullUnique(employer.langs, item.langs);
+    pushUnique(employer.brief, item.brief);
+    pushUnique(employer.tools, item.tools);
+    pushUnique(employer.langs, item.langs);
   }
 
-  pullUnique(brief, item.brief);
-  pullUnique(tools, item.tools);
-  pullUnique(langs, item.langs);
+  sortTags(item.brief);
+  sortTags(item.langs);
+  sortTags(item.tools);
+  item.tags = [...item.brief, ...item.langs, ...item.tools];
+  item.tags.forEach(t => t.used = true)
 
   return item
 }
 
+const initTag = (tag = {}, group = 'Other') => {
+  tag.group = group;
+  tag.title = tag.t;
+  tag.id = nanoid();
+  tag.used = false;
+  return tag
+}
+
+const sortTags = (toSort) => {
+  const order = tags.map(t => t.id);
+  toSort.sort((el1, el2) => order.indexOf(el1.id) - order.indexOf(el2.id))
+}
+
+
+const tags = [
+  ...brief.map(i => initTag(i, 'Brief')),
+  ...langs.map(i => initTag(i, 'Languages')),
+  ...tools.map(i => initTag(i, 'Tools')),
+];
+
 
 const employers = [],
       projects = [],
-      brief = [],
-      langs = [],
-      tools = [],
-
       items = rawItems.map(item => initItem(item));
 
-// console.log(items, tools, langs, brief);
 
-export { items, projects, employers, brief, langs, tools }
+export { items, projects, employers, brief, langs, tools, tags }
