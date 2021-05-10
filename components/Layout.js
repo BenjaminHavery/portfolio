@@ -1,13 +1,24 @@
 
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+
 // import Link from 'next/link'
 import Head from 'next/head'
 
-import GlobalStyles from '../styles/Global'
+import Header from './Header'
 
+import GlobalStyles from '../styles/Global'
 import theme from '../styles/theme'
 const { site, color, dim, media, font, dur } = theme;
 
 const Layout = ({ title, children, tint = color.active }) => {
+
+  const [navOpen, setNavOpen] = useState(false),
+        router = useRouter(),
+        navState = { open: navOpen, toggle: (val = !navOpen) => setNavOpen(val) };
+
+  useEffect(() => setNavOpen(false), [router.asPath]);
+
 
   return (
     <div className='layout'>
@@ -16,11 +27,8 @@ const Layout = ({ title, children, tint = color.active }) => {
         <title>{ site.title }{ !!title ? `: ${ title }` : '' }</title>
       </Head>
 
-      <div className='header'>
-        {/* <Link href="/"><a className='logo'>{ site.title }</a></Link> */}
-        <span className='logo'>{ site.title }</span>
-        { !!title && <h1 className='title'>{ title }</h1> }
-      </div>
+      <Header {...{ title, router, navState }}/>
+
       
       { children }
 
@@ -48,15 +56,9 @@ const Layout = ({ title, children, tint = color.active }) => {
           transition: color ${dur.fast}s ease;
         }
 
-        .header {
+        .layout > :global(.header) {
           grid-column: 1;
           grid-row: 1;
-          display: flex;
-          flex-flow: row nowrap;
-          align-items: center;
-          padding: ${dim.air/2}px;
-          color: ${color.white};
-          background: linear-gradient(135deg, ${color.req} 0%, ${color.dep} 100%);
         }
 
         .logo {

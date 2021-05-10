@@ -1,4 +1,5 @@
 
+import { FaExpandAlt, FaCompressAlt, FaEye, FaEyeSlash, FaPlus, FaTrashAlt } from 'react-icons/fa';
 import Filter from './Filter'
 
 import theme from '../../styles/theme'
@@ -19,9 +20,12 @@ const Controls = ({ view, setView }) => {
   return (
     <div className='controls hide-scrollbar'>
       
-      <button className='button' onClick={() => toggleExpandAll()}>{ !!view.open.length ? 'Colapse' : 'Expand'} all</button>
-      <button className='button' onClick={() => toggleEmployers()}>{ view.employers ? 'Hide' : 'Show'} employers</button>
-      <button className='button' onClick={() => toggleUseFilter()}>{ view.filter ? 'Remove' : 'Apply'} filter</button>
+      <div className='buttons'>
+        <button onClick={() => toggleExpandAll()}>{ !!view.open.length ? <FaCompressAlt/> : <FaExpandAlt/>} All</button>
+        <button onClick={() => toggleEmployers()}>{ view.employers ? <FaEyeSlash/> : <FaEye/>} Employers</button>
+        <button onClick={() => toggleUseFilter()}>{ view.filter ? <FaTrashAlt/> : <FaPlus/>} Filter</button>
+      </div>
+      
       
       <Filter {...{ view, setView }}/>
 
@@ -29,29 +33,39 @@ const Controls = ({ view, setView }) => {
       <style jsx>{`
 
         .controls {
+        }
+        .buttons {
           display: flex;
           flex-flow: row wrap;
           align-items: flex-start;
           justify-content: flex-end;
           margin-right: -${air/2}px;
         }
-        .controls > :global(*) {
+        .buttons button {
           margin-bottom: ${air/2}px;
           margin-right: ${air/2}px;
-        }
 
-        .button {
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+          justify-content: space-between;
           flex: 0 0 auto;
           color: ${color.emp};
           border-color: ${color.emp};
           font-weight: bold;
         }
+        .buttons :global(svg) { margin-right: ${air/4}px }
 
         @media ${media.up.lg} {
          
           .controls {
-            display: block;
             padding: ${air}px ${air}px ${air/2}px 0;
+          }
+          .buttons {
+            flex-wrap: nowrap;
+          }
+          .buttons button {
+            flex: 1 0 auto;
           }
         }
       `}</style>

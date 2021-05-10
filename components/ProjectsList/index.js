@@ -27,11 +27,13 @@ const ProjectsList = () => {
       @media ${media.up.lg} {
 
         main.projects-list.main {
-          display: grid;
+          display: flex;
           overflow: hidden;
-          grid-template-columns: auto 1fr auto;
-          grid-template-rows: auto;
+          flex-flow: row-reverse nowrap;
+          margin: 0 auto;
           padding: 0;
+          width: 100%;
+          max-width: ${media.xl}px;
         }
 
         .projects-list > :global(.controls) {
@@ -39,13 +41,15 @@ const ProjectsList = () => {
           grid-column: 2;
           grid-row: 1;
           height: 100%;
+          width: 390px;
+          flex: 0 0 auto;
         }
 
         .projects-list > :global(.list) {
           overflow-y: auto;
           grid-column: 1;
           grid-row: 1;
-          width: 750px;
+          flex: 1 1 auto;
         }
       }
 

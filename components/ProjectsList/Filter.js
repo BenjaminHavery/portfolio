@@ -22,7 +22,7 @@ const Filter = ({ view, setView }) => {
       <style jsx>{`
         
         .filter {
-          margin: 0 ${air/2}px ${air/2}px 0;
+          margin: 0 0 ${air/2}px;
           padding: 0 ${air/2}px;
           border: ${lin}px solid ${color.pro};
         }
