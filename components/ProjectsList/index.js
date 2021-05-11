@@ -12,11 +12,11 @@ import { items, projects, tags } from './data'
 
 const ProjectsList = () => {
 
-  const [view, setView] = useState({ employers: true, open: [], filter: false, filterBy: [tags[1].id], filterStrict: false });
+  const [view, setView] = useState({ employers: true, open: [], filter: false, filterBy: [], filterStrict: true });
 
   
   return (
-  <main className='projects-list main'>
+  <main className='projects-list main hide-scrollbar'>
 
     <Controls {...{ view, setView }}/>
     <List items={ view.employers ? items : projects } {...{ view, setView }}/>

@@ -15,8 +15,7 @@ const Item = ({ item, level, view, setView }) => {
 
   const checkOpen = () => view.open.includes(item.id);
   const checkFilter = () => {
-    console.log('check filter', item.title);
-    var shouldShow = !view.filter;
+    var shouldShow = !view.filter || !view.filterBy.length;
     if (shouldShow) return shouldShow;
 
     var doneLooking = false;
@@ -28,7 +27,6 @@ const Item = ({ item, level, view, setView }) => {
       if (view.filterStrict && !shouldShow) doneLooking = true;
       if (!view.filterStrict && shouldShow) doneLooking = true;
     })
-    console.log(shouldShow);
     return shouldShow
   }
 
