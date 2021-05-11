@@ -31,8 +31,8 @@ const Tag = ({ tag, view, setView = false }) => {
   const active = !view.filter || view.filterBy.includes(tag.id),
         toggleActive = () => {
           if (!setView) return
-          if (active) setView({...view, filterBy: view.filterBy.split(',').filter(id => id !== tag.id).join() })
-          else setView({...view, filterBy: [...view.filterBy.split(','), tag.id].join() })
+          if (active) setView({...view, filterBy: view.filterBy.filter(id => id !== tag.id) })
+          else setView({...view, filterBy: [...view.filterBy, tag.id] })
         }
 
   return (

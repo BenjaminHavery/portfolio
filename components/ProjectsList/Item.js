@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react'
 
 import List from './List'
-import Tags from './Tags'
 import Project from './Project'
 import Employer from './Employer'
 
@@ -14,34 +13,44 @@ const { site, color, dim, dim: { air, lin, rad }, media, font, dur } = theme,
 
 const Item = ({ item, level, view, setView }) => {
 
+  const checkOpen = () => view.open.includes(item.id);
   const checkFilter = () => {
+    console.log('check filter', item.title);
     var shouldShow = !view.filter;
     if (shouldShow) return shouldShow;
 
     var doneLooking = false;
     const itemTags = item.tags.map(t => t.id);
 
-    view.filterBy.split(',').forEach(tag => {
+    view.filterBy.forEach(tag => {
       if (doneLooking) return;
       shouldShow = itemTags.includes(tag);
       if (view.filterStrict && !shouldShow) doneLooking = true;
       if (!view.filterStrict && shouldShow) doneLooking = true;
     })
+    console.log(shouldShow);
     return shouldShow
   }
 
-  const [filter, setFilter] = useState(checkFilter());
+
+  const [open, setOpen] = useState(checkOpen()),
+        [filter, setFilter] = useState(checkFilter());
+
 
   useEffect(() => {
     if (checkFilter() !== filter) setFilter(!filter);
   }, [view.filter, view.filterBy, view.filterStrict, view.employers]);
+  
+  useEffect(() => {
+    if (checkOpen() !== open) setOpen(!open);
+  }, [view.open]);
 
+  
+  const toggleOpen = () => {
+    if (open) setView({...view, open: view.open.filter(id => id !== item.id)});
+    else setView({...view, open: [...view.open, item.id]});
+  };
 
-  const open = view.open.includes(item.id),
-        toggleOpen = () => {
-          if (open) setView({...view, open: view.open.filter(id => id !== item.id)});
-          else setView({...view, open: [...view.open, item.id]});
-        };
 
   if (!filter) return null;
   return (

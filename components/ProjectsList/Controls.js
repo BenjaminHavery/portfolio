@@ -42,14 +42,13 @@ const Controls = ({ view, setView }) => {
           margin-right: -${air/2}px;
         }
         .buttons button {
-          margin-bottom: ${air/2}px;
-          margin-right: ${air/2}px;
 
           display: flex;
           flex-flow: row nowrap;
           align-items: center;
           justify-content: space-between;
           flex: 0 0 auto;
+          margin: 0 ${air/2}px ${air/2}px 0;
           color: ${color.emp};
           border-color: ${color.emp};
           font-weight: bold;

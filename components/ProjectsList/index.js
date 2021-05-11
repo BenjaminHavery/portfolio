@@ -12,7 +12,7 @@ import { items, projects, tags } from './data'
 
 const ProjectsList = () => {
 
-  const [view, setView] = useState({ employers: true, open: [], filter: false, filterBy: tags[1].id, filterStrict: false });
+  const [view, setView] = useState({ employers: true, open: [], filter: false, filterBy: [tags[1].id], filterStrict: false });
 
   
   return (

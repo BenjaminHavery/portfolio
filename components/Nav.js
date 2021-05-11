@@ -1,5 +1,6 @@
 
 import Link from 'next/link'
+import { FaCloudDownloadAlt } from 'react-icons/fa';
 
 import theme from '../styles/theme'
 const { site, color, dim, dim: { air, lin, rad }, media, font, dur } = theme;
@@ -7,7 +8,7 @@ const { site, color, dim, dim: { air, lin, rad }, media, font, dur } = theme;
 const items = [
   // { title: 'Home', href: '/' },
   { title: 'Projects', href: '/projects' },
-  { title: 'CV', href: '/benjamin-havery-cv.pdf', external: true },
+  // { title: 'CV', href: '/benjamin-havery-cv.pdf', external: true },
 ]
 
 const Nav = ({ navState, router }) => {
@@ -16,6 +17,15 @@ const Nav = ({ navState, router }) => {
     <nav className={`nav ${navState.open ? 'open' : ''}`}>
       <ul className='list'>
         { items.map(item => <Item key={ item.href } {...{ ...item, router }}>{ item.title }</Item> )}
+        
+        <Item
+          href='/benjamin-havery-cv.pdf'
+          external={true}
+          {...{ router }}
+          >
+          <FaCloudDownloadAlt style={{ marginRight: '5px' }}/>
+          CV
+        </Item>
       </ul>
 
 
@@ -55,13 +65,13 @@ const Item = ({ children, router, href, external = false }) => {
   
   return (
 
-    <li className={'item'}>
+    <li className={`item ${isCurrent ? 'active' : ''}`}>
       { external 
         ? <a  className='link' {...{ href }}>{ children }</a>
         : <Link {...{ href }}><a className='link'>{ children }</a></Link>
       }
 
-      { isCurrent && <span className='current'/> }
+      <span className='current'/>
 
 
       <style jsx>{`
@@ -70,9 +80,17 @@ const Item = ({ children, router, href, external = false }) => {
           position: relative;
           margin: ${air/2}px 0 0;
         }
+        .item.active { pointer-events: none }
+
+        .link {
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+        }
+
         .current {
           position: absolute;
-          display: block;
+          display: none;
           height: ${2*lin}px;
           width: ${2*lin}px;
           top: ${font.height/2}px;
@@ -81,16 +99,19 @@ const Item = ({ children, router, href, external = false }) => {
           transform: translate(-50%, -50%);
           background: ${color.white};
         }
+        .active .current { display: block; }
 
         @media ${media.up.lg} {
 
           .item {
-            margin: 0 0 0 ${air/2}px;
+            margin: 0 0 0 ${air}px;
           }
-          .current {
-            top: auto;
+          .item:hover .current { display: block }
+
+          .current, .focus {
+            top: calc(100% + ${air/4}px);
             left: 50%;
-            bottom: -${air/2.5}px;
+            // bottom: -${air/2.5}px;
           }
         }
       `}</style>
