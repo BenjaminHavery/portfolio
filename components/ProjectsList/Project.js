@@ -11,7 +11,7 @@ const { site, color, dim, dim: { air, lin, rad }, media, font, dur } = theme,
       eColor = color.req;
 
 const Project = ({
-  view, setView, open = true,
+  view, open = true,
   brief, deets, langs, tools, links
 }) => {
 

@@ -7,19 +7,20 @@ import Controls from './Controls'
 import theme from '../../styles/theme'
 const { site, color, dim, dim: { air, lin, rad }, media, font, dur } = theme;
 
-import { items, projects, tags } from './data'
+import { items, projects } from './data'
 
 
 const ProjectsList = () => {
 
-  const [view, setView] = useState({ employers: true, open: [], filter: false, filterBy: [], filterStrict: true });
+  const [viewState, setView] = useState({ employers: true, open: [], filter: false, filterBy: [], filterStrict: true }),
+        view = { ...viewState, set: (newView) => setView({ ...viewState, ...newView, set: undefined }) };
 
   
   return (
   <main className='projects-list main hide-scrollbar'>
 
-    <Controls {...{ view, setView }}/>
-    <List items={ view.employers ? items : projects } {...{ view, setView }}/>
+    <Controls {...{ view }}/>
+    <List items={ view.employers ? items : projects } {...{ view }}/>
 
 
     <style jsx>{`

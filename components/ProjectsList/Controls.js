@@ -8,14 +8,14 @@ const { site, color, dim, dim: { air, lin, rad }, media, font, dur } = theme;
 import { employers, projects } from './data'
 
 
-const Controls = ({ view, setView }) => {
+const Controls = ({ view }) => {
 
   const toggleExpandAll = () => {
-    if (view.open.length) setView({...view, open: []})
-    else setView({...view, open: [...projects, ...employers].map(i => i.id)})
+    if (view.open.length) view.set({ open: []})
+    else view.set({ open: [...projects, ...employers].map(i => i.id)})
   }
-  const toggleEmployers = () => setView({...view, employers: !view.employers })
-  const toggleUseFilter = () => setView({...view, filter: !view.filter })
+  const toggleEmployers = () => view.set({ employers: !view.employers })
+  const toggleUseFilter = () => view.set({ filter: !view.filter })
   
   return (
     <div className='controls hide-scrollbar'>
@@ -27,13 +27,11 @@ const Controls = ({ view, setView }) => {
       </div>
       
       
-      <Filter {...{ view, setView }}/>
+      <Filter {...{ view }}/>
 
 
       <style jsx>{`
 
-        .controls {
-        }
         .buttons {
           display: flex;
           flex-flow: row wrap;
@@ -49,6 +47,7 @@ const Controls = ({ view, setView }) => {
           justify-content: space-between;
           flex: 0 0 auto;
           margin: 0 ${air/2}px ${air/2}px 0;
+          padding: ${air/3 - lin}px ${air/2 - lin}px;
           color: ${color.emp};
           border-color: ${color.emp};
           font-weight: bold;

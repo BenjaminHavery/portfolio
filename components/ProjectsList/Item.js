@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react'
 
+import { FaExpandAlt, FaCompressAlt } from 'react-icons/fa';
 import List from './List'
 import Project from './Project'
 import Employer from './Employer'
@@ -40,13 +41,14 @@ const Item = ({ item, level, view, setView }) => {
   }, [view.filter, view.filterBy, view.filterStrict, view.employers]);
   
   useEffect(() => {
+    console.log('check open');
     if (checkOpen() !== open) setOpen(!open);
   }, [view.open]);
 
   
   const toggleOpen = () => {
-    if (open) setView({...view, open: view.open.filter(id => id !== item.id)});
-    else setView({...view, open: [...view.open, item.id]});
+    if (open) view.set({ open: view.open.filter(id => id !== item.id) });
+    else view.set({ open: [...view.open, item.id] });
   };
 
 
@@ -56,17 +58,17 @@ const Item = ({ item, level, view, setView }) => {
 
       <div className='header' onClick={() => toggleOpen()}>
         <h2 className='heading'>{ item.title }</h2>
-        {/* <button className='button' onClick={() => setOpen(!open)}>Details</button> */}
+        { open ? <FaCompressAlt/> : <FaExpandAlt/> }
       </div>
       <div className='content'>
 
         { item.type === 'project' && <Project {...{ ...item, open, view }}/> }
-        { item.type === 'employer' && <Employer {...{ ...item, open }}/> }
+        { item.type === 'employer' && <Employer {...{ ...item, open, view }}/> }
 
         { !open && <button className='button' onClick={() => toggleOpen()}>...</button> }
       </div>
 
-      <List items={ item.projects } level={ level + 1} {...{ view, setView }}/>
+      <List items={ item.projects } level={ level + 1} {...{ view }}/>
 
       <style jsx>{`
 
@@ -132,8 +134,11 @@ const Item = ({ item, level, view, setView }) => {
             left: -${air + lin}px;
             width: ${air}px;
           }
+          
           .header, .content {
             padding-left: ${air}px;
+          }
+          .content {
             padding-right: ${air}px;
           }
 

@@ -6,18 +6,18 @@ const { site, color, dim, dim: { air, lin, rad }, media, font, dur } = theme;
 
 import { brief, tools, langs } from './data'
 
-const Filter = ({ view, setView }) => {
+const Filter = ({ view }) => {
 
-  const toggleFilterStrict = (fs = !view.filterStrict) => fs === view.filterStrict ? null : setView({...view, filterStrict: fs });
+  const toggleFilterStrict = (fs = !view.filterStrict) => fs === view.filterStrict ? null : view.set({ filterStrict: fs });
   
   return view.filter ? (
     <div className='filter'>
       <h3>Filter mode</h3>
       <button className={`button ${view.filterStrict ? 'active' : ''}`} onClick={() => toggleFilterStrict(true)}>And</button>
       <button className={`button ${view.filterStrict ? '' : 'active' }`} onClick={() => toggleFilterStrict(false)}>Or</button>
-      <Tags title='Brief' tags={ brief } {...{ view, setView }}/>
-      <Tags title='Languages' tags={ langs } {...{ view, setView }}/>
-      <Tags title='Tools' tags={ tools } {...{ view, setView }}/>
+      <Tags title='Brief' tags={ brief } {...{ view }}/>
+      <Tags title='Languages' tags={ langs } {...{ view }}/>
+      <Tags title='Tools' tags={ tools } {...{ view }}/>
       
       <style jsx>{`
         
