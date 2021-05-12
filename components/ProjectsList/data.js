@@ -44,8 +44,10 @@ const initItem = (item, employer = false) => {
   sortTags(item.brief);
   sortTags(item.langs);
   sortTags(item.tools);
-  item.tags = [...item.brief, ...item.langs, ...item.tools];
-  item.tags.forEach(t => t.used = true)
+  item.tags = [...item.brief, ...item.langs, ...item.tools].map(t => {
+    t.used = true;
+    return t.id
+  });
 
   return item
 }

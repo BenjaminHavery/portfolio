@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react'
+import { useListItemBool, useListIntersectBool } from '../util'
 
 import { FaExpandAlt, FaCompressAlt } from 'react-icons/fa';
 import List from './List'
@@ -12,47 +13,17 @@ const { site, color, dim, dim: { air, lin, rad }, media, font, dur } = theme,
       eColor = color.req;
 
 
-const Item = ({ item, level, view, setView }) => {
+const Item = ({ item, level, view }) => {
 
-  const checkOpen = () => view.open.includes(item.id);
-  const checkFilter = () => {
-    var shouldShow = !view.filter || !view.filterBy.length;
-    if (shouldShow) return shouldShow;
+  const [open, toggleOpen] = useListItemBool(view.open, item.id, (list) => view.set({ open: list })),
+        [matchStrict, match] = useListIntersectBool(view.filterBy, item.tags);
 
-    var doneLooking = false;
-    const itemTags = item.tags.map(t => t.id);
+  const vis = !view.filter || !view.filterBy.length 
+              ? true
+              : view.filterStrict ? matchStrict : match;
+              
 
-    view.filterBy.forEach(tag => {
-      if (doneLooking) return;
-      shouldShow = itemTags.includes(tag);
-      if (view.filterStrict && !shouldShow) doneLooking = true;
-      if (!view.filterStrict && shouldShow) doneLooking = true;
-    })
-    return shouldShow
-  }
-
-
-  const [open, setOpen] = useState(checkOpen()),
-        [filter, setFilter] = useState(checkFilter());
-
-
-  useEffect(() => {
-    if (checkFilter() !== filter) setFilter(!filter);
-  }, [view.filter, view.filterBy, view.filterStrict, view.employers]);
-  
-  useEffect(() => {
-    console.log('check open');
-    if (checkOpen() !== open) setOpen(!open);
-  }, [view.open]);
-
-  
-  const toggleOpen = () => {
-    if (open) view.set({ open: view.open.filter(id => id !== item.id) });
-    else view.set({ open: [...view.open, item.id] });
-  };
-
-
-  if (!filter) return null;
+  if (!vis) return null;
   return (
     <li className={`item level--${ level } type--${ item.type }`}>
 

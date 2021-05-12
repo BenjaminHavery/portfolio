@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react'
+import { useListItemBool } from '../util'
 
 import theme from '../../styles/theme'
 const { site, color, dim, dim: { air, lin, rad }, media, font, dur } = theme,
@@ -28,33 +28,18 @@ export default Tags
 
 
 const Tag = ({ tag, view }) => {
-
-  const checkActive = () => {
-    if (!view.filter) return true
-    return view.filterBy.includes(tag.id)
-  }
-
-  const [active, setActive] = useState(checkActive());
   
-  useEffect(() => {
-    if (checkActive() !== active) setActive(!active);
-  }, [view.filter, view.filterBy]);
-
-  const toggleActive = () => {
-    if (active) view.set({ filterBy: view.filterBy.filter(id => id !== tag.id) })
-    else view.set({ filterBy: [...view.filterBy, tag.id] })
-  }
-
-  const El = view.filter ? 'button' : 'span';
+  const [active, toggleActive] = useListItemBool(view.filterBy, tag.id, (list) => view.set({ filterBy: list })),
+        isActive = !view.filter || active,
+        
+        El = view.filter ? 'button' : 'span';
 
   
   if (!tag.used) return null;
   return (
-    <li
-      className='item'
-      >
+    <li className='item'>
       <El
-        className={`tag ${ active ? 'active' : '' }`}
+        className={`tag ${ isActive ? 'active' : '' }`}
         onClick={view.filter ? () => toggleActive() : null}
         >
         { tag.title }
