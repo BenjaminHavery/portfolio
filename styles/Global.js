@@ -27,7 +27,26 @@ h1 { font-size: 2rem }
 h2 { font-size: 1.3rem }
 h3 { font-size: 1.1rem }
 
-p { margin-bottom: ${base/2}px }
+p, li { margin-bottom: ${base/2}px }
+
+li {
+  position: relative;
+  padding-left: ${air/2}px;
+}
+ul li:before {
+  content: '';
+  position: absolute;
+  height: ${font.size/3}px;
+  width: ${font.size/3}px;
+  top: ${font.height/2}px;
+  left: 0;
+  border-radius: 50%;
+  color: inherit;
+  background: ${font.color};
+  background: currentColor;
+  transform: translateY(-50%);
+}
+
 button {
   padding: ${dim.air/4}px ${dim.air/2}px;
   border: ${dim.lin}px solid ${color.text};

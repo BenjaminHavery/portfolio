@@ -46,10 +46,12 @@ const Item = ({ item, level, view }) => {
         .item {
           position: relative;
           margin: ${air/2}px 0 0;
+          padding: 0;
           border-left: ${lin}px solid ${pColor};
           border-top-left-radius: ${rad}px;
         }
-        .item:before {
+        .item:before { display: none }
+        .item:after {
           position: absolute;
           pointer-events: none;
           bottom: 0;

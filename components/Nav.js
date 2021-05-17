@@ -79,8 +79,10 @@ const Item = ({ children, router, href, external = false }) => {
         .item {
           position: relative;
           margin: ${air/2}px 0 0;
+          padding: 0;
         }
         .item.active { pointer-events: none }
+        .item:before { display: none }
 
         .link {
           display: flex;

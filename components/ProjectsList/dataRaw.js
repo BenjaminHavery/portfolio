@@ -3,6 +3,7 @@
 export const brief = [
         { sc: 'ws', t: 'Website' },
         { sc: 'wa', t: 'Web application' },
+        { sc: 'td', t: '3d' },
         { sc: 'bu', t: 'Build' },
         { sc: 'up', t: 'Updates/additions' },
         { sc: 'ma', t: 'Maintenance' },
@@ -23,6 +24,7 @@ export const brief = [
         { sc: 're', t: 'React' },
         { sc: 'vu', t: 'Vue' },
         { sc: 'no', t: 'Node.js' },
+        { sc: 'th', t: 'Three.js' },
         { sc: 'ddd', t: 'D3.js' },
         { sc: 'jq', t: 'JQuery' },
         { sc: 'nx', t: 'Next.js' },
@@ -42,6 +44,33 @@ const shortcodeMap = (items) => Object.fromEntries(items.map(i => [i.sc, i])),
 
 // Projects and Employers
 const items = [ // written in shorthand, gets verbose during parse step
+  {
+    title: '"My Wall" demo',
+    brief: [b.wa, b.td, b.de, b.bu],
+    deets: <>
+            <p>This is a project I threw together recently to demonstate a concept: a 3d wall to which users can add graffiti-style messages.</p>
+            <h4>The following core features are implemented:</h4>
+            <ul>
+              <li>Dynamically sized 3d wall, performant via instanced rendering of ~10,000 bricks in a single draw call.</li>
+              <li>Graffiti messages attached to the 3d wall.</li>
+              <li>Controls for traversing the scene that make some kind of sense on desktop and mobile.</li>
+              <li>Basic UI for adding messages to the wall.</li>
+            </ul>
+            <h4>Future features might include:</h4>
+            <ul>
+              <li>Fleshed out controls for adding messages, such that the user could select color, typeface, size, line-breaks etc.</li>
+              <li>Additional scene detail, for example foreground objects, pavement and sky.</li>
+              <li>More dynamic sizing and placement of messages on the wall, compared to the current implementation which is a single row of equally sized and shaped messages with a random offset in the y dimension.</li>
+              <li>Infinite wall, loaded/culled based on distance like messages are.</li>
+              <li>Integration of a data storage API for syncing messages between user sessions, Google Firebase would be good for this.</li>
+              <li>Changed render method for messages, currently projected HTML, to something inside the canvas (SVG sprites or 3d text?) that could be lit and occluded.</li>
+            </ul>
+          </>,
+    langs: [l.js, l.ht, l.cs],
+    tools: [t.th, t.nx, t.no, t.re, t.gi],
+    links: [{ text: 'My Wall (staging URL)', url: 'https://adoring-curie-e4640c.netlify.app/' }],
+  },
+
   {
     title: 'Todeps',
     brief: [b.wa, b.de, b.bu],

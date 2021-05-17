@@ -51,6 +51,8 @@ const Tag = ({ tag, view }) => {
           margin: 0 ${air/4}px ${air/4}px 0;
           padding: 0;
         }
+        .item:before { display: none }
+        
         .tag {
           display: block;
           padding: ${air/8}px ${air/3}px;
