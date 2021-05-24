@@ -3,6 +3,7 @@
 export const brief = [
         { sc: 'ws', t: 'Website' },
         { sc: 'wa', t: 'Web application' },
+        { sc: 'ga', t: 'Game' },
         { sc: 'td', t: '3d' },
         { sc: 'bu', t: 'Build' },
         { sc: 'up', t: 'Updates/additions' },
@@ -44,6 +45,29 @@ const shortcodeMap = (items) => Object.fromEntries(items.map(i => [i.sc, i])),
 
 // Projects and Employers
 const items = [ // written in shorthand, gets verbose during parse step
+  {
+    title: 'Tunnel Fighterz (working title)',
+    brief: [b.wa, b.ga, b.td, b.de, b.bu],
+    deets: <>
+            <p>"Tunnel Fighterz" is an experimental game in which I'm exploring the combination of instanced rendering and interactivity.</p>
+            <h4>The following core features are implemented:</h4>
+            <ul>
+              <li>Instanced rendering of 1000+ "foes" in a single draw call.</li>
+              <li>"Player" movable via arrow keys.</li>
+              <li>"Tunnel" environment with dynamic dimensions, composed of instance rendered torus geometry.</li>
+            </ul>
+            <h4>Future features might include:</h4>
+            <ul>
+              <li>Game mechanics, eg. dodge, shoot, survive for score.</li>
+              <li>Colision detection.</li>
+              <li>Destruction effects.</li>
+              <li>Wave patterns and level progression that makes sense.</li>
+            </ul>
+          </>,
+    langs: [l.js, l.ht, l.cs],
+    tools: [t.th, t.nx, t.no, t.re, t.gi],
+    links: [{ text: 'Tunnel Fighterz (staging URL)', url: 'https://romantic-thompson-569c30.netlify.app' }],
+  },
   {
     title: '"My Wall" demo',
     brief: [b.wa, b.td, b.de, b.bu],
